@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi princesita hermosa</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background: #ffc0cb;
+            padding: 20px;
+        }
+        .sobre {
+            width: 300px;
+            height: 200px;
+            background-color: #f8e1e1;
+            margin: auto;
+            border-radius: 10px;
+            position: relative;
+            cursor: pointer;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        .sobre:hover {
+            transform: scale(1.05);
+        }
+        /* Tapa del sobre */
+        .tapa {
+            width: 100%;
+            height: 100%;
+            background-color: #ff3366;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 10px;
+            transition: transform 0.5s ease;
+            overflow: hidden;
+            z-index: 2;
+        }
+        /* Efecto para cuando el sobre se abre */
+        .sobre.abierto .tapa {
+            transform: translateY(-100%);
+        }
+        .contenido {
+            display: none;
+            padding: 20px;
+            background: white;
+            position: relative;
+            z-index: 1;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        .heart {
+            font-size: 60px;
+            color: red;
+            animation: heartbeat 1.5s infinite;
+        }
+        h1 {
+            color: #ff3366;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #ff3366;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .button:hover {
+            background: #ff6699;
+        }
+
+        /* Líneas horizontales y verticales */
+        .linea-horizontal {
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background-color: #fff;
+            z-index: 3;
+            top: 50%;
+            left: 0;
+        }
+        .linea-vertical {
+            position: absolute;
+            width: 3px;
+            height: 100%;
+            background-color: #fff;
+            z-index: 3;
+            left: 50%;
+            top: 0;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+    </style>
+    <script>
+        let sobreAbierto = false; // Variable para saber si el sobre ya está abierto
+
+        function abrirSobre() {
+            if (!sobreAbierto) {
+                // Abre el sobre solo una vez
+                document.getElementById("sobre").classList.add("abierto");
+                document.getElementById("contenido").style.display = "block";  // Muestra el contenido
+                // Ocultar las líneas cuando se abre
+                document.querySelectorAll('.linea-horizontal, .linea-vertical').forEach(function(linea) {
+                    linea.style.display = 'none';
+                });
+                sobreAbierto = true; // Cambiar el estado a abierto
+            }
+        }
+
+        function mostrarMensaje() {
+            // Muestra el mensaje completo al hacer clic en el botón
+            document.getElementById("mensaje").innerHTML = "Me encantaría que fueras mi San Valentín, porque no hay nadie más con quien quisiera compartir ese día tan especial. ✨💖<br><br>Te espero el 14 de febrero a las 3:30 de la tarde, donde tengo preparada una sorpresita que estoy seguro te encantará. ¡No faltes! 💕😊";
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <button class="button" onclick="abrirSobre()">Ábreme</button>
+    </div>
+    <div class="sobre" id="sobre">
+        <!-- Líneas horizontales y verticales -->
+        <div class="linea-horizontal"></div>
+        <div class="linea-vertical"></div>
+        <div class="tapa"></div>
+        <div class="contenido" id="contenido">
+            <div class="heart">❤️</div>
+            <h1>Para mi princesita hermosa</h1>
+            <p>Hola mi amor,</p>
+            <p>Desde que llegaste a mi vida, cada día tiene más color. Tu sonrisa ilumina mis días y tu corazón me hace ser mejor persona.</p>
+            <p>Este 14 de febrero, me encantaría que...</p>
+            <button class="button" onclick="mostrarMensaje()">Haz clic aquí</button>
+            <p id="mensaje" style="margin-top: 20px; font-weight: bold;"></p>
+        </div>
+    </div>
+</body>
+</html>
